@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interest Quiz – What I Like</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Interest Quiz</h1>
+    <p>Discover your top interests and preferred activities</p>
+  </header>
+  <nav class="main-nav">
+  <div class="nav-flex">
+    <div class="brand">
+      <img src="poly.png" alt="PolyMotivator Logo" class="logo">
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+      <a href="feature1-interest.html" class="nav-link">Interest Quiz (Trexi)</a>
+      <a href="feature1-strength.html" class="nav-link">Strength Assessment (Ethan)</a>
+      <a href="feature2-diploma.html" class="nav-link">Polytechnic Explorer (Karolyn)</a>
+      <a href="feature5-motivation.html" class="nav-link">Preparation Tips (Osman)</a>
+      <a href="feature4-path.html" class="nav-link">Pathway Guide (Natasha)</a>
+    </div>
+  </div>
+</nav>
+  <main class="container">
+    <section class="card">
+      <span class="step">Step 1 of 5 – Interest Quiz</span>
+      <h2>Tell us about yourself</h2>
+      <p>Answer the questions below. After you submit, your interest summary will be shown for you to copy.</p>
+      <form id="interest-form" autocomplete="off" onsubmit="event.preventDefault(); showInterestSummary();">
+        <fieldset class="card-section">
+          <legend>Which topics/industries interest you most? (Pick 2–3)</legend>
+          <label><input type="checkbox" name="topics" value="Technology"> Technology</label>
+          <label><input type="checkbox" name="topics" value="Design"> Design</label>
+          <label><input type="checkbox" name="topics" value="Business"> Business</label>
+          <label><input type="checkbox" name="topics" value="Healthcare"> Healthcare</label>
+          <label><input type="checkbox" name="topics" value="Media"> Media</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>Which activities do you enjoy most? (Pick 2)</legend>
+          <label><input type="checkbox" name="activities" value="Building"> Building</label>
+          <label><input type="checkbox" name="activities" value="Creating"> Creating</label>
+          <label><input type="checkbox" name="activities" value="Helping"> Helping</label>
+          <label><input type="checkbox" name="activities" value="Coding"> Coding</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>What motivates you most?</legend>
+          <label><input type="radio" name="motivator" value="Money" required> Money</label>
+          <label><input type="radio" name="motivator" value="Impact"> Making an Impact</label>
+          <label><input type="radio" name="motivator" value="Creativity"> Creativity</label>
+          <label><input type="radio" name="motivator" value="Stability"> Stability</label>
+        </fieldset>
+        <button class="copy-btn" type="submit">Submit</button>
+      </form>
+      <div class="grid" style="margin-top:1rem">
+        <div class="tool-box">
+          <h3>Chatbot</h3>
+          <p>Embed your Botpress / Flowise chatbot here.</p>
+        </div>
+        <div class="tool-box">
+          <h3>Avatar</h3>
+          <p>Embed your avatar here.</p>
+        </div>
+      </div>
+      <div id="interest-summary-section" style="display:none;">
+        <h3>Your Interest Summary</h3>
+        <label for="interest-summary">Copy this summary and use it in the next step.</label>
+        <textarea class="copy-box" id="interest-summary" readonly></textarea>
+        <button class="copy-btn" onclick="copyInterestSummary()">Copy to clipboard</button>
+        <div class="next">Step 2: Copy this summary. On the next page (Strength Assessment), paste this into the big text box.</div>
+      </div>
+      <script>
+      // Save and restore form state and summary using localStorage
+      function showInterestSummary() {
+        const topics = Array.from(document.querySelectorAll('input[name="topics"]:checked')).map(cb => cb.value);
+        const activities = Array.from(document.querySelectorAll('input[name="activities"]:checked')).map(cb => cb.value);
+        const motivator = document.querySelector('input[name="motivator"]:checked')?.value || '';
+        let summary = 'Interest Profile Summary\n';
+        summary += 'Top Interests: ' + (topics.length ? topics.join(', ') : 'N/A') + '\n';
+        summary += 'Preferred Activities: ' + (activities.length ? activities.join(', ') : 'N/A') + '\n';
+        summary += 'Main Motivator: ' + (motivator || 'N/A') + '\n';
+        document.getElementById('interest-summary').value = summary;
+        document.getElementById('interest-summary-section').style.display = '';
+        // Save to localStorage
+        localStorage.setItem('interestQuiz_topics', JSON.stringify(topics));
+        localStorage.setItem('interestQuiz_activities', JSON.stringify(activities));
+        localStorage.setItem('interestQuiz_motivator', motivator);
+        localStorage.setItem('interestQuiz_summary', summary);
+      }
+      function copyInterestSummary() {
+        const summary = document.getElementById('interest-summary').value;
+        navigator.clipboard.writeText(summary);
+        // Save the summary as the user's profile summary for this page
+        localStorage.setItem('profile_interest_summary', summary);
+      }
+      // Restore state on load
+      window.addEventListener('DOMContentLoaded', function() {
+        const topics = JSON.parse(localStorage.getItem('interestQuiz_topics') || '[]');
+        const activities = JSON.parse(localStorage.getItem('interestQuiz_activities') || '[]');
+        const motivator = localStorage.getItem('interestQuiz_motivator') || '';
+        const summary = localStorage.getItem('interestQuiz_summary') || '';
+        topics.forEach(val => {
+          const cb = document.querySelector('input[name="topics"][value="'+val+'"]');
+          if(cb) cb.checked = true;
+        });
+        activities.forEach(val => {
+          const cb = document.querySelector('input[name="activities"][value="'+val+'"]');
+          if(cb) cb.checked = true;
+        });
+        if(motivator) {
+          const rb = document.querySelector('input[name="motivator"][value="'+motivator+'"]');
+          if(rb) rb.checked = true;
+        }
+        // Restore profile summary if it was copied
+        const profileSummary = localStorage.getItem('profile_interest_summary') || summary;
+        if(profileSummary) {
+          document.getElementById('interest-summary').value = profileSummary;
+          document.getElementById('interest-summary-section').style.display = '';
+        }
+      });
+      </script>
+    </section>
+  </main>
+  <footer>
+    © PolyMotivator • Find Your Path
+  </footer>
+</body>
+</html>

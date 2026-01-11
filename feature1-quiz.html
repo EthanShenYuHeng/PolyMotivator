@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 1 of 5 – Interest + Strength Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Diploma Guidance Website</h1>
+      <p class="subtitle">Step 1 of 5 – Interest + Strength Quiz</p>
+    </div>
+  </header>
+  <nav class="main-nav">
+  <div class="nav-flex">
+    <div class="brand">
+      <img src="poly.png" alt="PolyMotivator Logo" class="logo">
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+      <a href="feature1-interest.html" class="nav-link">Interest Quiz (Trexi)</a>
+      <a href="feature1-strength.html" class="nav-link">Strength Assessment (Ethan)</a>
+      <a href="feature2-diploma.html" class="nav-link">Polytechnic Explorer (Karolyn)</a>
+      <a href="feature5-motivation.html" class="nav-link">Preparation Tips (Osman)</a>
+      <a href="feature4-path.html" class="nav-link">Pathway Guide (Natasha)</a>
+    </div>
+  </div>
+</nav>
+  <main class="container">
+    <div class="step-banner">Step 1 of 5 – Interest + Strength Quiz</div>
+    <section class="card stack">
+      <h2>Instructions</h2>
+      <p>Answer the questions below. At the end, copy your profile summary and use it in the next step.</p>
+      <form class="stack" id="quiz-form" autocomplete="off" onsubmit="event.preventDefault(); showProfileSummary();">
+        <fieldset class="card-section">
+          <legend>Interests (pick up to 3)</legend>
+          <label><input type="checkbox" name="interests" value="Technology"> Technology</label>
+          <label><input type="checkbox" name="interests" value="Design"> Design</label>
+          <label><input type="checkbox" name="interests" value="Helping People"> Helping People</label>
+          <label><input type="checkbox" name="interests" value="Science"> Science</label>
+          <label><input type="checkbox" name="interests" value="Business"> Business</label>
+          <label><input type="checkbox" name="interests" value="Media"> Media</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>Strengths (pick up to 3)</legend>
+          <label><input type="checkbox" name="strengths" value="Problem-solving"> Problem-solving</label>
+          <label><input type="checkbox" name="strengths" value="Creativity"> Creativity</label>
+          <label><input type="checkbox" name="strengths" value="Communication"> Communication</label>
+          <label><input type="checkbox" name="strengths" value="Teamwork"> Teamwork</label>
+          <label><input type="checkbox" name="strengths" value="Analytical Thinking"> Analytical Thinking</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>Learning Style</legend>
+          <label><input type="radio" name="learning" value="Hands-on" required> Hands-on</label>
+          <label><input type="radio" name="learning" value="Visual"> Visual</label>
+          <label><input type="radio" name="learning" value="Reading/Writing"> Reading/Writing</label>
+          <label><input type="radio" name="learning" value="Listening"> Listening</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>Career Areas (pick up to 2)</legend>
+          <label><input type="checkbox" name="careers" value="IT"> IT</label>
+          <label><input type="checkbox" name="careers" value="Digital Media"> Digital Media</label>
+          <label><input type="checkbox" name="careers" value="Engineering"> Engineering</label>
+          <label><input type="checkbox" name="careers" value="Business"> Business</label>
+          <label><input type="checkbox" name="careers" value="Healthcare"> Healthcare</label>
+        </fieldset>
+        <button class="copy-btn" type="submit">Submit</button>
+      </form>
+      <div id="profile-summary-section" style="display:none;">
+        <h3>Your Profile Summary</h3>
+        <label for="profile-summary">Copy this summary and use it in the next step.</label>
+        <textarea class="copy-box" id="profile-summary" readonly></textarea>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('profile-summary').value)">Copy to clipboard</button>
+        <div class="next-instruction">Step 2: Copy this summary. On the next page (Diploma Matcher), paste this into the big text box.</div>
+      </div>
+      <script>
+      function showProfileSummary() {
+        // Gather checked values
+        const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+        const strengths = Array.from(document.querySelectorAll('input[name="strengths"]:checked')).map(cb => cb.value);
+        const learning = document.querySelector('input[name="learning"]:checked')?.value || '';
+        const careers = Array.from(document.querySelectorAll('input[name="careers"]:checked')).map(cb => cb.value);
+        // Build summary
+        let summary = 'My profile:\n';
+        summary += 'Interests – ' + (interests.length ? interests.join(', ') : '[Not selected]') + '\n';
+        summary += 'Strengths – ' + (strengths.length ? strengths.join(', ') : '[Not selected]') + '\n';
+        summary += 'Learning Style – ' + (learning || '[Not selected]') + '\n';
+        summary += 'Career Areas – ' + (careers.length ? careers.join(', ') : '[Not selected]');
+        document.getElementById('profile-summary').value = summary;
+        document.getElementById('profile-summary-section').style.display = '';
+        document.getElementById('quiz-form').style.display = 'none';
+      }
+      </script>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Diploma Guidance Website
+  </footer>
+</body>
+</html>

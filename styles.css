@@ -1,0 +1,453 @@
+/* PolyMotivator Brand Theme */
+:root {
+  --brand-gradient: linear-gradient(90deg, #2A93D5 0%, #32D796 100%);
+  --brand-blue: #2A93D5;
+  --brand-green: #32D796;
+  --cta-green: #00C875;
+  --hero-card: #357D8A;
+  --neutral-bg: #F8FAFC;
+  --text-white: #fff;
+  --highlight: #31D8B5;
+  --nav-link: #4A4A4A;
+  --shadow: 0 8px 32px rgba(42,147,213,0.10);
+  --radius: 20px;
+}
+
+/* Body and background */
+body {
+  margin: 0;
+  background: var(--brand-gradient);
+  font-family: 'Inter', 'Segoe UI', system-ui, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Homepage only: green background */
+body.home-page {
+  background: linear-gradient(120deg, #2A93D5 0%, #32D796 100%);
+  min-height: 100vh;
+}
+/* Header styles */
+header, header.hero {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.logo-img {
+  height: 56px;
+  width: auto;
+}
+
+.site-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: 'Inter', 'Segoe UI', system-ui, Arial, sans-serif;
+}
+
+.hero-header {
+  background: transparent;
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.hero-subtitle {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0 auto;
+  max-width: 900px;
+  opacity: 0.97;
+  line-height: 1.4;
+}
+
+/* Navigation styles */
+.main-nav {
+  background: var(--neutral-bg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.7em 0.5em;
+  box-shadow: 0 2px 12px rgba(42,147,213,0.06);
+  border-bottom: 1px solid #e0e7ef;
+}
+
+.nav-wrap {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.nav-pill {
+  color: var(--nav-link);
+  background: none;
+  border-radius: 999px;
+  padding: 0.5em 1.2em;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0.2em 0.1em;
+  transition: color 0.2s, background 0.2s;
+  border-bottom: 2.5px solid transparent;
+  font-family: 'Inter', 'Segoe UI', system-ui, Arial, sans-serif;
+  font-size: 1.08em;
+  letter-spacing: 0.01em;
+}
+
+.nav-pill.active, .main-nav .nav-pill[aria-current="page"] {
+  color: var(--brand-blue);
+  border-bottom: 2.5px solid var(--brand-blue);
+  background: #e6f9f3;
+}
+
+.nav-pill:hover {
+  color: var(--brand-green);
+  background: #e6f9f3;
+}
+
+/* Container and card styles */
+.container {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 0 1.2rem;
+}
+
+.card {
+  background: var(--neutral-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-card {
+  background: var(--hero-card);
+  color: var(--text-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5em 2.5em 2em 2.5em;
+  max-width: 480px;
+  margin: 2em auto 2em auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.hero-card h2 {
+  font-size: 2.1em;
+  font-weight: 800;
+  color: var(--text-white);
+  margin: 0 0 0.2em 0;
+  line-height: 1.1;
+}
+
+.hero-card .highlight {
+  color: var(--highlight);
+}
+
+.hero-card p {
+  color: var(--text-white);
+  font-size: 1.1em;
+  margin: 0 0 1em 0;
+}
+
+.hero-card .begin-btn {
+  background: var(--cta-green);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9em 2.2em;
+  font-size: 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5em;
+  box-shadow: 0 2px 8px rgba(42,147,213,0.10);
+  transition: background 0.18s, transform 0.18s;
+}
+
+.hero-card .begin-btn:hover {
+  background: var(--brand-green);
+  color: #fff;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Feature card styles */
+.feature-card {
+  display: block;
+  background: var(--brand-gradient);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.2rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(42,147,213,0.18);
+  background: linear-gradient(120deg, #32D796 0%, #2A93D5 100%);
+}
+
+/* How it works section */
+.how-it-works {
+  background: #e6f9f3;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-top: 1.5rem;
+  color: var(--brand-blue);
+  font-weight: 500;
+}
+
+.spacer {
+  height: 1.5rem;
+}
+
+/* Step banner */
+.step-banner {
+  background: var(--brand-gradient);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.7em 1.5em;
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px rgba(42,147,213,0.04);
+}
+
+/* Form styles */
+label {
+  font-weight: 600;
+  color: var(--brand-blue);
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1.5px solid #b6c6e3;
+  font-size: 1.08em;
+  font-family: inherit;
+  background: #f8fafc;
+  margin-bottom: 1.2em;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+input[type="text"]:focus, textarea:focus {
+  border: 1.5px solid var(--cta-green);
+  outline: none;
+  box-shadow: 0 0 0 3px #00C87533;
+}
+
+/* Copy box styles */
+.copy-box {
+  width: 100%;
+  min-height: 140px;
+  border-radius: 10px;
+  border: 1.5px solid var(--brand-blue);
+  background: #f4f8fb;
+  color: var(--brand-blue);
+  font-size: 1.08em;
+  font-family: inherit;
+  padding: 1em;
+  margin-bottom: 1em;
+  resize: none;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+.copy-btn {
+  background: var(--cta-green);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7em 2em;
+  font-size: 1.08em;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 8px rgba(42,147,213,0.08);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.copy-btn:hover {
+  background: var(--brand-green);
+  color: #fff;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Next instruction box */
+.next-instruction {
+  background: #e6f9f3;
+  color: #00C875;
+  border: 1.5px solid #b6f5d8;
+  padding: 1.2em;
+  border-radius: 8px;
+  margin: 2em 0 1em 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.08em;
+}
+
+/* Card section styles */
+.card-section {
+  background: #e6f9f3;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.card-section h3 {
+  margin-top: 0;
+  color: var(--brand-green);
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  color: var(--brand-blue);
+  font-size: 1em;
+  padding: 2em 0 1em 0;
+  margin-top: 2em;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  .card, .card-section {
+    padding: 1.2rem 0.7rem;
+  }
+  .feature-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 1em;
+  }
+  .main-nav, .nav-wrap {
+    gap: 0.2em;
+    padding: 0.5em 0.2em;
+  }
+  .logo-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .site-title {
+    font-size: 2rem;
+  }
+  .hero-header {
+    padding: 1.5rem 0.5rem 1rem;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    max-width: 98vw;
+  }
+  .hero-content h1, header h1 {
+    font-size: 2.1rem;
+  }
+  .subtitle, header p {
+    font-size: 1.05rem;
+  }
+}
+
+/* =========================
+   Navbar – Slim & Professional
+   ========================= */
+
+/* Logo */
+.logo {
+  height: 144px;        /* KEY FIX */
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Site title */
+.site-title {
+  font-size: 1.4rem;   /* slightly smaller */
+  font-weight: 700;
+  color: #00b7b7;
+  margin-left: 0.3rem;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  white-space: nowrap;
+}
+
+/* Navbar container */
+.main-nav {
+  background: #fff;
+  border-bottom: 1px solid #e0e7ef;
+  box-shadow: 0 2px 6px rgba(42,147,213,0.04);
+  padding: 0;          /* remove vertical padding */
+}
+
+/* Flex layout */
+.nav-flex {
+  display: flex;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;  /* controls navbar height */
+  gap: 2rem;
+}
+
+/* Brand area */
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+/* Links container */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+/* Individual links */
+.nav-link {
+  padding: 0.25rem 0;
+  font-size: 0.95rem;     /* slimmer text */
+  font-weight: 500;
+  color: #444;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.18s ease, border-bottom 0.18s ease;
+}
+
+/* Active link */
+.nav-link.active,
+.nav-link[aria-current="page"] {
+  color: #00b7b7;
+  border-bottom: 2px solid #00b7b7;
+  font-weight: 600;
+}
+
+/* Hover */
+.nav-link:hover {
+  color: #2A93D5;
+  border-bottom: 2px solid #2A93D5;
+}

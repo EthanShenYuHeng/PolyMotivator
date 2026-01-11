@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strength Assessment – What I'm Good At</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Strength Assessment</h1>
+    <p>Identify your strengths, work style, and learning style</p>
+  </header>
+  <nav class="main-nav">
+  <div class="nav-flex">
+    <div class="brand">
+      <img src="poly.png" alt="PolyMotivator Logo" class="logo">
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+      <a href="feature1-interest.html" class="nav-link">Interest Quiz (Trexi)</a>
+      <a href="feature1-strength.html" class="nav-link">Strength Assessment (Ethan)</a>
+      <a href="feature2-diploma.html" class="nav-link">Polytechnic Explorer (Karolyn)</a>
+      <a href="feature5-motivation.html" class="nav-link">Preparation Tips (Osman)</a>
+      <a href="feature4-path.html" class="nav-link">Pathway Guide (Natasha)</a>
+    </div>
+  </div>
+</nav>
+  <main class="container">
+    <section class="card">
+      <span class="step">Step 2 of 5 – Strength Assessment</span>
+      <h2>What are your strengths?</h2>
+      <p>Answer the questions below. After you submit, your strength summary will be shown for you to copy.</p>
+      <form id="strength-form" autocomplete="off" onsubmit="event.preventDefault(); showStrengthSummary();">
+        <fieldset class="card-section">
+          <legend>1) Problem-Solving Ability</legend>
+          <p>How comfortable are you with solving complex problems or logical tasks?</p>
+          <label><input type="radio" name="problem" value="A" required> Very comfortable – I enjoy breaking problems down</label>
+          <label><input type="radio" name="problem" value="B"> Comfortable – I can solve them with guidance</label>
+          <label><input type="radio" name="problem" value="C"> Neutral – I try my best</label>
+          <label><input type="radio" name="problem" value="D"> Not comfortable – I prefer simpler tasks</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>2) Attention to Detail</legend>
+          <p>When working on tasks, how do you handle details and accuracy?</p>
+          <label><input type="radio" name="detail" value="A" required> I am very detail-oriented and notice mistakes easily</label>
+          <label><input type="radio" name="detail" value="B"> I usually check details when reminded</label>
+          <label><input type="radio" name="detail" value="C"> I focus more on the big picture</label>
+          <label><input type="radio" name="detail" value="D"> I often overlook small details</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>3) Learning Style</legend>
+          <p>How do you learn best?</p>
+          <label><input type="radio" name="learning" value="A" required> Hands-on practice and experiments</label>
+          <label><input type="radio" name="learning" value="B"> Visual examples and demonstrations</label>
+          <label><input type="radio" name="learning" value="C"> Reading instructions or notes</label>
+          <label><input type="radio" name="learning" value="D"> Group discussions and explanations</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>4) Working Style</legend>
+          <p>How do you prefer to work on tasks?</p>
+          <label><input type="radio" name="workstyle" value="A" required> Independently with clear instructions</label>
+          <label><input type="radio" name="workstyle" value="B"> In a team with shared responsibilities</label>
+          <label><input type="radio" name="workstyle" value="C"> A mix of both</label>
+          <label><input type="radio" name="workstyle" value="D"> I adapt based on the situation</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>5) Structure vs Flexibility</legend>
+          <p>How do you handle structured rules and procedures?</p>
+          <label><input type="radio" name="structure" value="A" required> I work best with clear structure and guidelines</label>
+          <label><input type="radio" name="structure" value="B"> I prefer some structure with flexibility</label>
+          <label><input type="radio" name="structure" value="C"> I prefer freedom to explore</label>
+          <label><input type="radio" name="structure" value="D"> I struggle with strict rules</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>6) Pressure & Deadlines</legend>
+          <p>How do you respond to deadlines or pressure?</p>
+          <label><input type="radio" name="pressure" value="A" required> I stay calm and focused</label>
+          <label><input type="radio" name="pressure" value="B"> I manage with some stress</label>
+          <label><input type="radio" name="pressure" value="C"> I feel stressed but still complete tasks</label>
+          <label><input type="radio" name="pressure" value="D"> I struggle under pressure</label>
+        </fieldset>
+        <fieldset class="card-section">
+          <legend>7) Communication & Explanation</legend>
+          <p>How comfortable are you explaining ideas or results to others?</p>
+          <label><input type="radio" name="communication" value="A" required> Very comfortable</label>
+          <label><input type="radio" name="communication" value="B"> Comfortable in small groups</label>
+          <label><input type="radio" name="communication" value="C"> Slightly uncomfortable</label>
+          <label><input type="radio" name="communication" value="D"> Not comfortable</label>
+        </fieldset>
+        <button class="copy-btn" type="submit">Submit</button>
+      </form>
+      <div id="strength-summary-section" style="display:none;">
+        <h3>Your Strength Summary</h3>
+        <label for="strength-summary">Copy this summary and use it in the next step.</label>
+        <textarea class="copy-box" id="strength-summary" readonly></textarea>
+        <button class="copy-btn" onclick="copyStrengthSummary()">Copy to clipboard</button>
+        <div class="next">Step 3: Copy this summary. On the next page (Diploma Matcher), paste this into the big text box.</div>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <div class="tool-box">
+          <h3>Chatbot</h3>
+            <div id="flowise-chat-embed"style="height: 520px; border-radius: 12px; overflow: hidden; border:1px solid #ddd; background:#fff;">
+              <div style="padding:12px; font-size:14px;">
+                <br><br>
+                <flowise-fullchatbot></flowise-fullchatbot>
+                  <script type="module">
+                      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+                      Chatbot.initFull({
+                          chatflowid: "637f9fd3-b956-41cd-b2f2-7066d7a90039",
+                          apiHost: "https://flowise-production-ee50.up.railway.app",
+                      })
+                  </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      <script>
+function showStrengthSummary() {
+  // Get answers
+  const answers = {
+    problem: document.querySelector('input[name="problem"]:checked')?.value || '',
+    detail: document.querySelector('input[name="detail"]:checked')?.value || '',
+    learning: document.querySelector('input[name="learning"]:checked')?.value || '',
+    workstyle: document.querySelector('input[name="workstyle"]:checked')?.value || '',
+    structure: document.querySelector('input[name="structure"]:checked')?.value || '',
+    pressure: document.querySelector('input[name="pressure"]:checked')?.value || '',
+    communication: document.querySelector('input[name="communication"]:checked')?.value || ''
+  };
+  // Map answers to strengths
+  let strengths = [];
+  if(answers.problem === 'A') strengths.push('Strong problem-solving');
+  if(answers.detail === 'A') strengths.push('Attention to detail');
+  if(answers.pressure === 'A') strengths.push('Calm under pressure');
+  if(answers.communication === 'A' || answers.communication === 'B') strengths.push('Good communicator');
+  // Map learning style
+  let learningStyle = '';
+  if(answers.learning === 'A') learningStyle = 'Hands-on learner';
+  else if(answers.learning === 'B') learningStyle = 'Visual learner';
+  else if(answers.learning === 'C') learningStyle = 'Prefers reading/writing';
+  else if(answers.learning === 'D') learningStyle = 'Learns best in groups';
+  // Map working style
+  let workingStyle = '';
+  if(answers.workstyle === 'A') workingStyle = 'Works well independently';
+  else if(answers.workstyle === 'B') workingStyle = 'Works well in teams';
+  else if(answers.workstyle === 'C') workingStyle = 'Flexible working style';
+  else if(answers.workstyle === 'D') workingStyle = 'Adapts to situation';
+  // Build summary (no diploma recommendations)
+  let summary = 'My strength summary:\n';
+  summary += 'Strengths – ' + (strengths.length ? strengths.join(', ') : 'N/A') + '\n';
+  summary += 'Working style – ' + (workingStyle || 'N/A') + '\n';
+  summary += 'Learning style – ' + (learningStyle || 'N/A') + '\n';
+  summary += '\nStep 3: Copy this summary and paste it into the Diploma Matcher or Polytechnic Comparison page.';
+  document.getElementById('strength-summary').value = summary;
+  document.getElementById('strength-summary-section').style.display = '';
+  // Save to localStorage
+  Object.keys(answers).forEach(k => localStorage.setItem('strengthQ_'+k, answers[k]));
+  localStorage.setItem('strengthQuiz_summary', summary);
+}
+function copyStrengthSummary() {
+  const summary = document.getElementById('strength-summary').value;
+  navigator.clipboard.writeText(summary);
+  localStorage.setItem('profile_strength_summary', summary);
+}
+window.addEventListener('DOMContentLoaded', function() {
+  const keys = ['problem','detail','learning','workstyle','structure','pressure','communication'];
+  keys.forEach(k => {
+    const val = localStorage.getItem('strengthQ_'+k) || '';
+    if(val) {
+      const rb = document.querySelector('input[name="'+k+'"][value="'+val+'"]');
+      if(rb) rb.checked = true;
+    }
+  });
+  const summary = localStorage.getItem('strengthQuiz_summary') || '';
+  const profileSummary = localStorage.getItem('profile_strength_summary') || summary;
+  if(profileSummary) {
+    document.getElementById('strength-summary').value = profileSummary;
+    document.getElementById('strength-summary-section').style.display = '';
+  }
+});
+</script>
+        <!-- Flowise Chatbot Embed -->
+    </section>
+  </main>
+  <footer>
+    © PolyMotivator • Find Your Path
+  </footer>
+</body>
+</html>

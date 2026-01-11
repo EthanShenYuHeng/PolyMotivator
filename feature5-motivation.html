@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 6 of 5 – Motivation & Careers</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Preparation Tips</h1>
+    <p>Reflect on your goals and next steps for your career journey.</p>
+  </header>
+  <nav class="main-nav">
+  <div class="nav-flex">
+    <div class="brand">
+      <img src="poly.png" alt="PolyMotivator Logo" class="logo">
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+      <a href="feature1-interest.html" class="nav-link">Interest Quiz (Trexi)</a>
+      <a href="feature1-strength.html" class="nav-link">Strength Assessment (Ethan)</a>
+      <a href="feature2-diploma.html" class="nav-link">Polytechnic Explorer (Karolyn)</a>
+      <a href="feature5-motivation.html" class="nav-link">Preparation Tips (Osman)</a>
+      <a href="feature4-path.html" class="nav-link">Pathway Guide (Natasha)</a>
+    </div>
+  </div>
+</nav>
+  <main class="container">
+    <section class="card">
+      <span class="step">Step 6 of 5 – Motivation & Careers</span>
+      <h2>Paste your course path or diploma choices</h2>
+      <p>Paste your course path or diploma choices here OR type your favourite diploma area.</p>
+      <label for="motivation-input">Paste your course path or diploma choices here OR type your favourite diploma area.</label>
+      <textarea id="motivation-input" placeholder="Paste your course path or type your area..."></textarea>
+      <button class="copy-btn" style="margin-bottom:1.5em;" onclick="showMotivationRecommendation();return false;">Submit</button>
+      <div class="grid" style="margin-top:1rem">
+        <div class="tool-box">
+          <h3>Chatbot</h3>
+          <p>Embed your Botpress / Flowise chatbot here.</p>
+        </div>
+        <div class="tool-box">
+          <h3>Avatar</h3>
+          <p>Embed your avatar here.</p>
+        </div>
+      </div>
+      <div id="motivation-summary-section" style="display:none;">
+        <h3>Copyable Motivation & Career Notes</h3>
+        <label for="motivation-summary">Copy this summary and save it for yourself.</label>
+        <textarea class="copy-box" id="motivation-summary" readonly></textarea>
+        <button class="copy-btn" onclick="copyMotivationSummary()">Copy to clipboard</button>
+        <div class="next">Done! Save this summary for yourself.</div>
+      </div>
+      <script>
+      // Save and restore input/summary using localStorage
+      function showMotivationRecommendation() {
+        const input = document.getElementById('motivation-input').value.trim();
+        let summary = 'Motivation & Career Notes\n';
+        if (!input) {
+          summary += 'Please provide your course path or diploma area for a personalized summary.';
+        } else {
+          summary += 'Motivation/Goal: ' + input + '\n';
+          summary += '\nKeep exploring, set clear goals, and take small steps each week!';
+        }
+        document.getElementById('motivation-summary').value = summary;
+        document.getElementById('motivation-summary-section').style.display = '';
+        // Save to localStorage
+        localStorage.setItem('motivation_input', input);
+        localStorage.setItem('motivation_summary', summary);
+      }
+      function copyMotivationSummary() {
+        const summary = document.getElementById('motivation-summary').value;
+        navigator.clipboard.writeText(summary);
+        // Save the summary as the user's profile summary for this page
+        localStorage.setItem('profile_motivation_summary', summary);
+      }
+      // Restore state on load
+      window.addEventListener('DOMContentLoaded', function() {
+        const input = localStorage.getItem('motivation_input') || '';
+        const summary = localStorage.getItem('motivation_summary') || '';
+        if(input) document.getElementById('motivation-input').value = input;
+        // Restore profile summary if it was copied
+        const profileSummary = localStorage.getItem('profile_motivation_summary') || summary;
+        if(profileSummary) {
+          document.getElementById('motivation-summary').value = profileSummary;
+          document.getElementById('motivation-summary-section').style.display = '';
+        }
+      });
+      </script>
+    </section>
+  </main>
+  <footer>
+    © PolyMotivator • Find Your Path
+  </footer>
+</body>
+</html>

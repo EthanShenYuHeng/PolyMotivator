@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 2 of 5 – Diploma Matcher</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Polytechnic Explorer</h1>
+    <p>Find a diploma that fits your interests, strengths, and future goals.</p>
+  </header>
+  <nav class="main-nav">
+  <div class="nav-flex">
+    <div class="brand">
+      <img src="poly.png" alt="PolyMotivator Logo" class="logo">
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+      <a href="feature1-interest.html" class="nav-link">Interest Quiz (Trexi)</a>
+      <a href="feature1-strength.html" class="nav-link">Strength Assessment (Ethan)</a>
+      <a href="feature2-diploma.html" class="nav-link">Polytechnic Explorer (Karolyn)</a>
+      <a href="feature5-motivation.html" class="nav-link">Preparation Tips (Osman)</a>
+      <a href="feature4-path.html" class="nav-link">Pathway Guide (Natasha)</a>
+    </div>
+  </div>
+</nav>
+  <main class="container">
+    <section class="card">
+      <span class="step">Step 2 of 5 – Diploma Matcher</span>
+      <h2>Paste your profile summary</h2>
+      <p>Paste your profile summary from the previous step OR type your own description if you skipped it.</p>
+      <label for="input-profile">Paste your profile summary here (from the quiz) OR describe your interests and strengths in your own words.</label>
+      <textarea id="input-profile" placeholder="Paste your profile summary or type your interests..."></textarea>
+      <button class="copy-btn" style="margin-bottom:1.5em;" onclick="showDiplomaRecommendation();return false;">Submit</button>
+      <div class="grid" style="margin-top:1rem">
+        <div class="tool-box">
+          <h3>Chatbot</h3>
+          <p>Embed your Botpress / Flowise chatbot here.</p>
+        </div>
+        <div class="tool-box">
+          <h3>Avatar</h3>
+          <p>Embed your avatar here.</p>
+        </div>
+      </div>
+      <div id="diploma-summary-section" style="display:none;">
+        <h3>Copyable Recommendation</h3>
+        <label for="diploma-summary">Copy this summary and use it in the next step.</label>
+        <textarea class="copy-box" id="diploma-summary" readonly></textarea>
+        <button class="copy-btn" onclick="copyDiplomaSummary()">Copy to clipboard</button>
+        <div class="next">Step 4: Copy this recommendation and paste it into the next page (Polytechnic Comparison).</div>
+      </div>
+      <script>
+      // Save and restore input/summary using localStorage
+      function showDiplomaRecommendation() {
+        const input = document.getElementById('input-profile').value.trim();
+        let summary = 'Diploma Recommendation\n';
+        if (!input) {
+          summary += 'Please provide your profile summary for a personalized recommendation.';
+        } else {
+          // Example logic (can be customized)
+          summary += 'Based on your profile, you may be suited for diplomas in these areas:\n';
+          if (input.toLowerCase().includes('technology') || input.toLowerCase().includes('it')) {
+            summary += '- Information Technology / Cybersecurity\n';
+          }
+          if (input.toLowerCase().includes('design') || input.toLowerCase().includes('media')) {
+            summary += '- Design / Digital Media\n';
+          }
+          if (input.toLowerCase().includes('business')) {
+            summary += '- Business / Marketing\n';
+          }
+          if (input.toLowerCase().includes('healthcare')) {
+            summary += '- Healthcare / Life Sciences\n';
+          }
+          if (input.toLowerCase().includes('problem-solving')) {
+            summary += '- Engineering / Applied Sciences\n';
+          }
+          summary += '\nFor a detailed match, review the polytechnic course guides.';
+        }
+        document.getElementById('diploma-summary').value = summary;
+        document.getElementById('diploma-summary-section').style.display = '';
+        // Save to localStorage
+        localStorage.setItem('diplomaMatcher_input', input);
+        localStorage.setItem('diplomaMatcher_summary', summary);
+      }
+      function copyDiplomaSummary() {
+        const summary = document.getElementById('diploma-summary').value;
+        navigator.clipboard.writeText(summary);
+        // Save the summary as the user's profile summary for this page
+        localStorage.setItem('profile_diploma_summary', summary);
+      }
+      // Restore state on load
+      window.addEventListener('DOMContentLoaded', function() {
+        const input = localStorage.getItem('diplomaMatcher_input') || '';
+        const summary = localStorage.getItem('diplomaMatcher_summary') || '';
+        if(input) document.getElementById('input-profile').value = input;
+        // Restore profile summary if it was copied
+        const profileSummary = localStorage.getItem('profile_diploma_summary') || summary;
+        if(profileSummary) {
+          document.getElementById('diploma-summary').value = profileSummary;
+          document.getElementById('diploma-summary-section').style.display = '';
+        }
+      });
+      </script>
+    </section>
+  </main>
+  <footer>
+    © PolyMotivator • Find Your Path
+  </footer>
+</body>
+</html>
