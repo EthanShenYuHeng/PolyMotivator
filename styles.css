@@ -377,20 +377,24 @@ footer {
    Navbar – Slim & Professional
    ========================= */
 
+/* =========================
+   NAV BAR (Match Screenshot)
+   ========================= */
+
 /* Logo */
 .logo {
-  height: 144px;        /* KEY FIX */
-  width: auto;
-  object-fit: contain;
-  flex-shrink: 0;
+    flex-shrink: 0;
+    height: 150px;
+    width: auto;
+    object-fit: contain;
 }
 
-/* Site title */
+/* Optional site title (if you use one) */
 .site-title {
-  font-size: 1.4rem;   /* slightly smaller */
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #00b7b7;
-  margin-left: 0.3rem;
+  color: #00b7b7;            /* logo/brand color */
+  margin-left: 0.35rem;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   white-space: nowrap;
 }
@@ -398,9 +402,9 @@ footer {
 /* Navbar container */
 .main-nav {
   background: #fff;
-  border-bottom: 1px solid #e0e7ef;
-  box-shadow: 0 2px 6px rgba(42,147,213,0.04);
-  padding: 0;          /* remove vertical padding */
+  border-bottom: 1px solid #e5e7eb; /* thin grey line like screenshot */
+  box-shadow: none;                 /* screenshot has almost no shadow */
+  padding: 0;
 }
 
 /* Flex layout */
@@ -409,45 +413,62 @@ footer {
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0.6rem 1rem;  /* controls navbar height */
-  gap: 2rem;
+  padding: 0.65rem 1.25rem; /* slim height */
+  gap: 1.6rem;
 }
 
 /* Brand area */
 .brand {
   display: flex;
   align-items: center;
+  gap: 0.4rem;
 }
 
 /* Links container */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.8rem;            /* spacing like screenshot */
   margin-left: auto;
+  flex-wrap: wrap;        /* allows wrapping on smaller screens */
 }
 
 /* Individual links */
 .nav-link {
-  padding: 0.25rem 0;
-  font-size: 0.95rem;     /* slimmer text */
+  display: inline-block;
+  padding: 0.2rem 0;      /* thinner */
+  font-size: 0.95rem;     /* smaller like screenshot */
   font-weight: 500;
-  color: #444;
+  color: #374151;         /* dark grey */
   text-decoration: none;
   border-bottom: 2px solid transparent;
-  transition: color 0.18s ease, border-bottom 0.18s ease;
+  transition: color 0.15s ease, border-bottom 0.15s ease;
+  white-space: nowrap;    /* keeps each item on one line */
 }
 
-/* Active link */
+/* Active link (blue underline like screenshot) */
 .nav-link.active,
 .nav-link[aria-current="page"] {
-  color: #00b7b7;
-  border-bottom: 2px solid #00b7b7;
+  color: #2563eb;                /* blue */
+  border-bottom: 2px solid #2563eb;
   font-weight: 600;
 }
 
 /* Hover */
 .nav-link:hover {
-  color: #2A93D5;
-  border-bottom: 2px solid #2A93D5;
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+/* Mobile layout */
+@media (max-width: 900px) {
+  .nav-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
 }
