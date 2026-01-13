@@ -384,7 +384,7 @@ footer {
 /* Logo */
 .logo {
     flex-shrink: 0;
-    height: 150px;
+    height: 48px;
     width: auto;
     object-fit: contain;
 }
